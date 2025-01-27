@@ -35,7 +35,7 @@ The **Online Career Counseling Website** bridges this gap by offering a personal
 ### Tools & Utilities:
 - **npm** for package and dependency management
 - **Environment Variables** managed using `.env`
-
+- **Run the home.html file** 
 ---
 
 ## Author  
