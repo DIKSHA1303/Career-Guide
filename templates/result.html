@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Career Suggestions - Bar Chart</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Include Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="result-base">
+        <h1><center>Your Career Suggestions:</center></h1>
+        <div class="container">
+            <br><br>
+            <canvas id="myChart"></canvas><br><br>
+            <a href="testt.html" class="btn-result"><center>Take the Quiz Again</center></a>
+        </div>
+    </div>
+    
+
+    <script>
+        // Retrieve suggestions from localStorage
+        const suggestions = JSON.parse(localStorage.getItem('careerSuggestions')) || [];
+        
+        // Count occurrences of each suggestion
+        const suggestionCounts = {};
+        suggestions.forEach(suggestion => {
+            suggestionCounts[suggestion] = (suggestionCounts[suggestion] || 0) + 1;
+        });
+        
+        // Prepare data for Chart.js
+        const labels = Object.keys(suggestionCounts);
+        const data = Object.values(suggestionCounts);
+
+        // Display bar chart using Chart.js
+        const ctx = document.getElementById('myChart').getContext('2d');
+        const myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Suggestions Count',
+                    data: data,
+                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Count'
+                        }
+                    },
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Suggestions'
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
